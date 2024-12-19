@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControllerPesquisa">
+   <children>
+      <Pane layoutX="29.0" layoutY="27.0" prefHeight="346.0" prefWidth="542.0">
+         <children>
+            <Label fx:id="LblQuestProg" layoutX="170.0" layoutY="14.0" text="Questionário de programação" textFill="#0538ae">
+               <font>
+                  <Font name="Times New Roman" size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblNome" layoutX="37.0" layoutY="73.0" text="Nome :">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="LblSisOp" layoutX="36.0" layoutY="116.0" text="Sistema operaciona ultilizado :">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblLinguagemProg" layoutX="36.0" layoutY="157.0" text="Linguagem de programação predileta :">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtNome" layoutX="96.0" layoutY="69.0" prefHeight="25.0" prefWidth="208.0">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </TextField>
+            <ToggleButton fx:id="tBtnWindows" layoutX="227.0" layoutY="112.0" mnemonicParsing="false" onAction="#onClicktBtnWindows" prefWidth="70.0" text="Windows" />
+            <ToggleButton fx:id="tBtnLinux" layoutX="304.0" layoutY="112.0" mnemonicParsing="false" onAction="#onClicktBtnLinux" prefWidth="70.0" text="Linux" />
+            <ToggleButton fx:id="tBtnMac" layoutX="382.0" layoutY="112.0" mnemonicParsing="false" onAction="#onClicktBtnMac" prefWidth="70.0" text="Mac" />
+            <RadioButton fx:id="rBtnJava" layoutX="270.0" layoutY="156.0" mnemonicParsing="false" onAction="#onClickrBtnJava" text="Java" />
+            <RadioButton fx:id="rBtnPhyton" layoutX="327.0" layoutY="156.0" mnemonicParsing="false" onAction="#onClickrBtnPhyton" text="Phyton" />
+            <RadioButton fx:id="rBtnC" layoutX="402.0" layoutY="156.0" mnemonicParsing="false" onAction="#onClickrBtnC" text="C" />
+            <CheckBox fx:id="ckbxProgDia" layoutX="35.0" layoutY="194.0" mnemonicParsing="false" onAction="#onClickckbxProgDia" text="Programa todo dia" />
+            <CheckBox fx:id="ckbxGostaDeProg" layoutX="35.0" layoutY="228.0" mnemonicParsing="false" onAction="#onClickckbxGostaDeProg" text="Gosta de programar" />
+            <Button fx:id="btnSubmeter" layoutX="37.0" layoutY="279.0" mnemonicParsing="false" onAction="#onClickbtnSubmeter" text="Submeter respostas" />
+            <Button fx:id="btnFecharPq" layoutX="452.0" layoutY="279.0" mnemonicParsing="false" onAction="#onClickBtnFecharPq" text="Fechar" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

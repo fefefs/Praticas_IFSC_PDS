@@ -17,9 +17,9 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        stage.setTitle("Somador de números");
+        stage.setTitle("Nossa aplicação");
        
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/SomarView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/TelaInicial.fxml"));
        
         Parent root = loader.load();
        

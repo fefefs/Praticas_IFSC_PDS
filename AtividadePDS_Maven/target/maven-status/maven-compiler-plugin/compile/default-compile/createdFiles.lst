@@ -1,3 +1,5 @@
-controller\SomarController.class
 module-info.class
+controller\Tela2Controller.class
+controller\SomarController.class
 principal\App.class
+controller\ControllerPesquisa.class

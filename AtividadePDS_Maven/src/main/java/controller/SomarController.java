@@ -1,12 +1,23 @@
 package controller;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
-public class SomarController {
+public class SomarController implements Initializable {
+    
+    private Stage stageSomar;
 
     @FXML
     private Label Result;
@@ -19,7 +30,7 @@ public class SomarController {
 
     @FXML
     private Button btnSomar;
-
+    
     @FXML
     private Label lblN1;
 
@@ -38,9 +49,16 @@ public class SomarController {
     @FXML
     void onClickBtnFechar(ActionEvent event) 
     {
-        
-        System.exit(0);
-
+        if(stageSomar != null)
+        {
+            stageSomar.close();
+        }
+    }
+    
+    //método para atribuir um stage ao controller atual
+    public void setStage(Stage stage)
+    {
+        this.stageSomar = stage;
     }
 
     @FXML
@@ -65,10 +83,20 @@ public class SomarController {
         Result.setText(resultado.toString());
         } catch (NumberFormatException n){
             
-            Result.setText("Números invalidos");
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        alerta.setTitle("inPut Invalidos");
+        alerta.setHeaderText("Esse inPut e invalido");
+        alerta.setContentText("insira novamente!");
+        alerta.showAndWait();
             
         }
 
+    }
+    
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+       
     }
 
 }
