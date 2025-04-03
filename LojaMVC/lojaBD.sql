@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(45) NOT NULL,
-  `telefone` varchar(15) NOT NULL,
+  `fone` varchar(15) NOT NULL,
   `login` varchar(15) NOT NULL,
   `senha` varchar(15) NOT NULL,
   `perfil` varchar(10) NOT NULL,
@@ -40,7 +40,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'Anne','5547111111','annebj','1234','admin'),(2,'Mariana','5547222222','marianaa','4321','user');
+INSERT INTO `usuarios` VALUES (1,'Fulano','234234','fulano','1234','admin'),(2,'Beltrano','234234243','beltrano','1234','user');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-03-27 10:58:50
+-- Dump completed on 2025-03-27 11:03:47

@@ -1,3 +1,7 @@
-C:\Users\Aluno\Desktop\Praticas_IFSC_PDS\LojaMVC\src\main\java\module-info.java
-C:\Users\Aluno\Desktop\Praticas_IFSC_PDS\LojaMVC\src\main\java\principal\App.java
-C:\Users\Aluno\Desktop\Praticas_IFSC_PDS\LojaMVC\src\main\java\controller\LoginController.java
+C:\Users\Aluno\Desktop\PDS2-I6-25-1\LojaMVC\src\main\java\model\GenericDAO.java
+C:\Users\Aluno\Desktop\PDS2-I6-25-1\LojaMVC\src\main\java\module-info.java
+C:\Users\Aluno\Desktop\PDS2-I6-25-1\LojaMVC\src\main\java\model\LoginDAO.java
+C:\Users\Aluno\Desktop\PDS2-I6-25-1\LojaMVC\src\main\java\model\Usuario.java
+C:\Users\Aluno\Desktop\PDS2-I6-25-1\LojaMVC\src\main\java\principal\App.java
+C:\Users\Aluno\Desktop\PDS2-I6-25-1\LojaMVC\src\main\java\controller\LoginController.java
+C:\Users\Aluno\Desktop\PDS2-I6-25-1\LojaMVC\src\main\java\dal\ConexaoBD.java
