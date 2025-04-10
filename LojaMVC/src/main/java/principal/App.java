@@ -26,6 +26,7 @@ public class App extends Application {
             lc.abrirJanela();
         });
         Scene scene = new Scene (root);
+        scene.getStylesheets().add(getClass().getResource("/css/login.css").toExternalForm());
         telaLogin.setScene(scene);
         telaLogin.show();
     }
