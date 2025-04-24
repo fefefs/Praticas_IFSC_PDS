@@ -3,5 +3,5 @@ model\GenericDAO.class
 controller\LoginController.class
 model\LoginDAO.class
 module-info.class
+controller\ListagemUsuariosController.class
 model\Usuario.class
-principal\App.class

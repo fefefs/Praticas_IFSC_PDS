@@ -33,13 +33,13 @@ public class LoginController {
     private Usuario user;
 
     @FXML
+    private ImageView imgBancoOnline;
+    
+    @FXML
     private Button bntFechar;
 
     @FXML
     private Button bntLogar;
-    
-      @FXML
-    private ImageView imgBancoOnline;
 
     @FXML
     private Label lblDB;
@@ -72,58 +72,67 @@ public class LoginController {
 //        } else {
 //            System.out.println("Problemas na conexão com o banco de dados");
 //        }
+    
+//    if(dao.bancoOnline()){
+//        lblDB.setText("Banco de Dados: Online");
+//        lblDB.setStyle("-fx-text-fill: blue;");
+//    } else {
+//        lblDB.setText("Banco de Dados: Offline");
+//        lblDB.setStyle("-fx-text-fill: red;");
+//    }
 
-          if(dao.bancoOnline()){
-//              lblDB.setText("Banco de dados: Online");
-//              lblDB.setStyle("-fx-text-fill: blue");
-//          }else {
-//              lblDB.setText("Banco de dados: Offline");
-//              lblDB.setStyle("-fx-text-fill: red");
-//
-//          }
-           File arquivo =new File("src/main/resources/icones/dbok.png");
+       if(dao.bancoOnline()){
+           File arquivo = new File("src/main/resources/icones/dbok.png");
            Image imagem = new Image(arquivo.toURI().toString());
            imgBancoOnline.setImage(imagem);
-           
-          }else{
-              File arquivo =new File("src/main/resources/icones/dberror.png");
+       } else {
+           File arquivo = new File("src/main/resources/icones/dberror.png");
            Image imagem = new Image(arquivo.toURI().toString());
            imgBancoOnline.setImage(imagem);
-          }
+       }
 
     }
 
     public void abrirJanela() {
-        verificarBanco();
         bntLogar.setDefaultButton(true);
+        verificarBanco();
     }
 
     public void processarLogin() throws IOException, SQLException {
         if (!dao.bancoOnline()) {
-            AlertaUtil.mostrarErro("ERRO", "Banco de  dados desconectado");
+            AlertaUtil.mostrarErro("Erro", "Banco de dados desconectado!");
         } else if (txtUsuario.getText() != null && !txtUsuario.getText().isEmpty() && txtSenha.getText() != null && !txtSenha.getText().isEmpty()) {
-               listaDados = autenticar(txtUsuario.getText(), txtSenha.getText());
-               if(listaDados != null){
-                    AlertaUtil.mostrarInformacao("Informação", "Bem vind" + listaDados.get(0) + "acesso liberado!");
-                    if(stageLogin != null){
-                        stageLogin.close();
-                    }
-                    abrirTelaPrincipal(listaDados);
-               } else{
-                    AlertaUtil.mostrarErro("ERRO", "Usuario ou senha Invalido");
-               }
+            listaDados = autenticar(txtUsuario.getText(),
+                    txtSenha.getText());
+            if (listaDados != null) {
+                AlertaUtil.mostrarInformacao("Informação", "Bem vindo "
+                        + listaDados.get(0) + " acesso liberado!" );
+                if (stageLogin != null) {
+                    stageLogin.close();
+                }
+                abrirTelaPrincipal(listaDados);
+            } else {
+//                System.out.println("Usuário e senha invalidos!");
+                  AlertaUtil.mostrarErro("Erro", "Usuário e senha inválidos!");
+            }
         } else {
-             AlertaUtil.mostrarErro("ERRO", "Verifique as informações!");
+//            System.out.println("Verifique as informações!");
+                AlertaUtil.mostrarErro("Erro", "Verifique as informações!");
         }
-        
 
     }
 
     private ArrayList<String> autenticar(String login, String senha) throws SQLException {
-
+        user = dao.autenticar(login, senha);
+        if (user != null) {
+            ArrayList<String> listaDados = new ArrayList<>();
+            listaDados.add(user.getNome());
+            listaDados.add(user.getPerfil());
+            return listaDados;
+        }
         return null;
     }
-    
+
     private void abrirTelaPrincipal(ArrayList<String> dados) throws MalformedURLException, IOException {
         URL url = new File("src/main/java/view/Principal.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
@@ -138,12 +147,13 @@ public class LoginController {
         });
 
         Scene scene = new Scene(root);
+        
+        Image icone = new Image(getClass().getResourceAsStream("/icones/loja.png"));
+        telaPrincipal.getIcons().add(icone);
 
         telaPrincipal.setTitle("Tela principal do Sistema");
         telaPrincipal.setScene(scene);
         telaPrincipal.show();
     }
-
-
 
 }
