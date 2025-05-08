@@ -27,7 +27,7 @@
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
-            <artifactId>javafx-base</artifactId>
+            <artifactId>javafx-web</artifactId>
             <version>17.0.7</version>
             <type>jar</type>
         </dependency>
