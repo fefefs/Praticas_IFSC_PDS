@@ -2,6 +2,7 @@ package controller;
 
 import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.Optional;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -74,11 +75,11 @@ public class CadastroUsuariosController {
         if(usuarioSelecionado == null){
             incluir(txtNome.getText(),
             txtTelefone.getText(), txtLogin.getText(),
-            txtSenha.getText(), cbPerfil.getValue(), txtEmail.getText(), txtDataNas.getValue() );//nem esse
+            txtSenha.getText(), cbPerfil.getValue(), txtEmail.getText(), dtDataNasc.getValue() );//nem esse
         } else {
             alterar(usuarioSelecionado.getId(), txtNome.getText(),
                     txtTelefone.getText(), txtLogin.getText(),
-                    txtSenha.getText(), cbPerfil.getValue(), txtEmail.getText(), txtDataNas.getValue());//não sei se ta certo
+                    txtSenha.getText(), cbPerfil.getValue(), txtEmail.getText(), dtDataNasc.getValue());//não sei se ta certo
         }
     }
 
@@ -103,14 +104,14 @@ public class CadastroUsuariosController {
             cbPerfil.getItems().addAll("admin", "user");
             cbPerfil.setValue(user.getPerfil());
             txtEmail.setText(user.getEmail());
-            dtDateNas.serDate(user.getDateNas());
+            dtDataNasc.setDate(user.getDataNasc());
             
         }
     }
 
     void incluir(String nome, String fone, 
-        String login, String senha, String perfil, String email, Date dataNas) throws SQLException {
-        Usuario usuario = new Usuario(nome, fone, login, senha, perfil, email, dataNas);
+        String login, String senha, String perfil, String email, LocalDate dataNas) throws SQLException {
+        Usuario usuario = new Usuario(nome, fone, login, senha, perfil, email, dataNasc);
         new UsuarioDAO().salvar(usuario);
         if(onUsuarioSalvo != null){
             onUsuarioSalvo.run();
@@ -121,9 +122,9 @@ public class CadastroUsuariosController {
     }
     
     void alterar(int id, String nome, String fone, String login,
-       String senha, String perfil, String email, Date dataNas) throws SQLException{
+       String senha, String perfil, String email, LocalDate dataNas) throws SQLException{
         Usuario usuarioAlterado = new Usuario(id, nome, fone, login,
-        senha, perfil, email, dataNas);
+        senha, perfil, email, dataNasc);
         new UsuarioDAO().alterar(usuarioAlterado);
         if(onUsuarioSalvo != null){
             onUsuarioSalvo.run();
