@@ -180,6 +180,15 @@ public class Usuario implements Serializable {
         return emailProperty;
     }
      
+     private transient StringProperty dataNascProperty;
+    
+     public StringProperty dataNascProperty() {
+        if (dataNascProperty == null) {
+            dataNascProperty = new SimpleStringProperty(dataNasc.toString());
+        }
+        return dataNascProperty;
+    }
+     
      
 
 }

@@ -3,6 +3,7 @@ package controller;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -73,13 +74,21 @@ public class CadastroUsuariosController {
     @FXML
     void btnIncluirAlterarClick(ActionEvent event) throws SQLException {
         if(usuarioSelecionado == null){
+            if(txtNome.getText().isEmpty() || txtLogin.getText().isEmpty() || txtSenha.getText().isEmpty() || txtTelefone.getText().isEmpty() || txtEmail.getText().isEmpty()){
+             
+                AlertaUtil.mostrarInformacao("Campos não preenchidos",
+                "Você deve preencher todos os campos!");
+                
+            }
+            else{
             incluir(txtNome.getText(),
             txtTelefone.getText(), txtLogin.getText(),
-            txtSenha.getText(), cbPerfil.getValue(), txtEmail.getText(), dtDataNasc.getValue() );//nem esse
+            txtSenha.getText(), cbPerfil.getValue(), txtEmail.getText(), dtDataNasc.getValue() );
+            }
         } else {
             alterar(usuarioSelecionado.getId(), txtNome.getText(),
                     txtTelefone.getText(), txtLogin.getText(),
-                    txtSenha.getText(), cbPerfil.getValue(), txtEmail.getText(), dtDataNasc.getValue());//não sei se ta certo
+                    txtSenha.getText(), cbPerfil.getValue(), txtEmail.getText(), dtDataNasc.getValue());
         }
     }
 
@@ -104,13 +113,14 @@ public class CadastroUsuariosController {
             cbPerfil.getItems().addAll("admin", "user");
             cbPerfil.setValue(user.getPerfil());
             txtEmail.setText(user.getEmail());
-            dtDataNasc.setDate(user.getDataNasc());
+            dtDataNasc.setValue(user.getDataNasc());
+            
             
         }
     }
 
     void incluir(String nome, String fone, 
-        String login, String senha, String perfil, String email, LocalDate dataNas) throws SQLException {
+        String login, String senha, String perfil, String email, LocalDate dataNasc) throws SQLException {
         Usuario usuario = new Usuario(nome, fone, login, senha, perfil, email, dataNasc);
         new UsuarioDAO().salvar(usuario);
         if(onUsuarioSalvo != null){
@@ -122,7 +132,7 @@ public class CadastroUsuariosController {
     }
     
     void alterar(int id, String nome, String fone, String login,
-       String senha, String perfil, String email, LocalDate dataNas) throws SQLException{
+       String senha, String perfil, String email, LocalDate dataNasc) throws SQLException{
         Usuario usuarioAlterado = new Usuario(id, nome, fone, login,
         senha, perfil, email, dataNasc);
         new UsuarioDAO().alterar(usuarioAlterado);

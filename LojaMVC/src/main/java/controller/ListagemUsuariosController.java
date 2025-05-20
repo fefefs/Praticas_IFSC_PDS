@@ -119,14 +119,14 @@ public class ListagemUsuariosController {
                     -> u.getValue().perfilProperty());
             
             TableColumn<Usuario, String> colunaEmail = new TableColumn<>("Email");
-            colunaPerfil.setCellValueFactory(u -> u.getValue().perfilProperty());
+            colunaEmail.setCellValueFactory(u -> u.getValue().emailProperty());
             
-            TableColumn<Usuario, Date> colunaAniversario = new TableColumn<>("Aniversário");
-            colunaPerfil.setCellValueFactory(u -> u.getValue().perfilProperty());
+            TableColumn<Usuario, String> colunaDataNasc = new TableColumn<>("Data de nascimento");
+            colunaDataNasc.setCellValueFactory(u -> u.getValue().dataNascProperty());
 
             tabelaUsuarios.getColumns().addAll(colunaID,
                     colunaNome, colunaFone, colunaLogin,
-                    colunaPerfil);
+                    colunaPerfil, colunaEmail, colunaDataNasc);
 
 //            tabelaUsuarios.setItems(lista);
             FilteredList<Usuario> listaFiltrada = new

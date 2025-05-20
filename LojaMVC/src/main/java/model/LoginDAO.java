@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -40,8 +41,8 @@ public class LoginDAO extends GenericDAO{
 				usuario.setLogin(rs.getString("login"));
 				usuario.setSenha(rs.getString("senha"));
 				usuario.setPerfil(rs.getString("perfil"));
-                                usuario.setEmail(rs.getString("email"));
-                                usuario.setDataNasc(rs.getDate("dataNasc"));
+                                usuario.setEmail(rs.getString("email"));                               
+                                usuario.setDataNasc(rs.getDate("dataNasc").toLocalDate());
 			}
 
 			rs.close();

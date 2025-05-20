@@ -1,5 +1,6 @@
 package model;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,8 +11,8 @@ public class UsuarioDAO extends GenericDAO {
 
     // Método para salvar usuarios
     public void salvar(Usuario usuario) throws SQLException {
-        String insert = "INSERT INTO USUARIOS(nome, fone, login, senha, perfil, email, dataNasc) VALUES(?,?,?,?,?,?)";
-          save(insert, usuario.getNome(), usuario.getFone(), usuario.getLogin(), usuario.getSenha(), usuario.getPerfil(), usuario.getEmail(), usuario.getDataNasc());
+        String insert = "INSERT INTO USUARIOS(nome, fone, login, senha, perfil, email, dataNasc) VALUES(?,?,?,?,?,?, ?)";
+          save(insert, usuario.getNome(), usuario.getFone(), usuario.getLogin(), usuario.getSenha(), usuario.getPerfil(), usuario.getEmail(), Date.valueOf(usuario.getDataNasc()));
     }
 
      // Método para alterar usuarios
@@ -19,7 +20,7 @@ public class UsuarioDAO extends GenericDAO {
         String update = "UPDATE USUARIOS " + "SET nome = ?, fone = ?, login = ?, senha = ?, perfil = ?, email = ?, dataNasc = ?"
                 + "WHERE ID = ?";
 		update(update, usuario.getId(), usuario.getNome(), usuario.getFone(), usuario.getLogin(),
-				usuario.getSenha(), usuario.getPerfil(), usuario.getEmail(), usuario.getDataNasc());
+				usuario.getSenha(), usuario.getPerfil(), usuario.getEmail(), Date.valueOf(usuario.getDataNasc()));
     }
 
     // Método para excluir usuarios
@@ -45,8 +46,7 @@ public class UsuarioDAO extends GenericDAO {
             usuario.setSenha(rs.getString("senha"));
             usuario.setPerfil(rs.getString("perfil"));
             usuario.setEmail(rs.getString("email"));
-            usuario.setDataNasc(rs.getDate("dataNasc"));
-
+            usuario.setDataNasc(rs.getDate("dataNasc").toLocalDate());
             lista.add(usuario);
         }
 
@@ -74,6 +74,7 @@ public class UsuarioDAO extends GenericDAO {
             usuario.setSenha(rs.getString("senha"));
             usuario.setPerfil(rs.getString("perfil"));
             usuario.setEmail(rs.getString("email"));
+            usuario.setDataNasc(rs.getDate("dataNasc").toLocalDate());
         }
 
         rs.close();
