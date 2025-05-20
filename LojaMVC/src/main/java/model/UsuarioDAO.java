@@ -10,16 +10,16 @@ public class UsuarioDAO extends GenericDAO {
 
     // Método para salvar usuarios
     public void salvar(Usuario usuario) throws SQLException {
-        String insert = "INSERT INTO USUARIOS(nome, fone, login, senha, perfil, email) VALUES(?,?,?,?,?,?)";
-          save(insert, usuario.getNome(), usuario.getFone(), usuario.getLogin(), usuario.getSenha(), usuario.getPerfil(), usuario.getEmail());
+        String insert = "INSERT INTO USUARIOS(nome, fone, login, senha, perfil, email, dataNasc) VALUES(?,?,?,?,?,?)";
+          save(insert, usuario.getNome(), usuario.getFone(), usuario.getLogin(), usuario.getSenha(), usuario.getPerfil(), usuario.getEmail(), usuario.getDataNasc());
     }
 
-    // Método para alterar usuarios
+     // Método para alterar usuarios
     public void alterar(Usuario usuario) throws SQLException {
-        String update = "UPDATE USUARIOS " + "SET nome = ?, fone = ?, login = ?, senha = ?, perfil = ?, email = ?"
+        String update = "UPDATE USUARIOS " + "SET nome = ?, fone = ?, login = ?, senha = ?, perfil = ?, email = ?, dataNasc = ?"
                 + "WHERE ID = ?";
 		update(update, usuario.getId(), usuario.getNome(), usuario.getFone(), usuario.getLogin(),
-				usuario.getSenha(), usuario.getPerfil(), usuario.getEmail());
+				usuario.getSenha(), usuario.getPerfil(), usuario.getEmail(), usuario.getDataNasc());
     }
 
     // Método para excluir usuarios
@@ -28,7 +28,7 @@ public class UsuarioDAO extends GenericDAO {
         delete(delete, id);
     }
 
-    // Método para buscar usuários
+     // Método para buscar usuários
     public ObservableList<Usuario> selecionarUsuarios() throws SQLException {
         ObservableList<Usuario> lista = FXCollections.observableArrayList();
         String sql = "SELECT * FROM USUARIOS";
@@ -45,6 +45,7 @@ public class UsuarioDAO extends GenericDAO {
             usuario.setSenha(rs.getString("senha"));
             usuario.setPerfil(rs.getString("perfil"));
             usuario.setEmail(rs.getString("email"));
+            usuario.setDataNasc(rs.getDate("dataNasc"));
 
             lista.add(usuario);
         }
@@ -55,6 +56,8 @@ public class UsuarioDAO extends GenericDAO {
 
         return lista;
     }
+
+
 
     // Método para buscar um usuário por ID
     public Usuario selecionarUsuario(Long iduser) throws SQLException {
