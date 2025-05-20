@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.time.LocalDate;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -16,10 +17,10 @@ public class Usuario implements Serializable {
     private String senha;
     private String perfil;
     private String email;
-    private Date dataNasc;
+    private LocalDate dataNasc;
 
     // Método construtor com todos os parâmetros
-    public Usuario(int id, String nome, String fone, String login, String senha, String perfil, String email, Date dataNasc) {
+    public Usuario(int id, String nome, String fone, String login, String senha, String perfil, String email, LocalDate dataNasc) {
         this.id = id;
         this.nome = nome;
         this.fone = fone;
@@ -31,7 +32,7 @@ public class Usuario implements Serializable {
     }
 
     // Método construtor com todos os parâmetros menos ID
-    public Usuario(String nome, String fone, String login, String senha, String perfil, String email, Date dataNasc) {
+    public Usuario(String nome, String fone, String login, String senha, String perfil, String email, LocalDate dataNasc) {
         this.nome = nome;
         this.fone = fone;
         this.login = login;
@@ -108,11 +109,11 @@ public class Usuario implements Serializable {
         this.email = email;
     }
     
-    public Date getDataNasc() {
+    public LocalDate getDataNasc() {
         return dataNasc;
     }
 
-    public void setDataNasc(Date dataNasc) {
+    public void setDataNasc(LocalDate dataNasc) {
         this.dataNasc = dataNasc;
     }
 
