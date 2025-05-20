@@ -10,16 +10,16 @@ public class UsuarioDAO extends GenericDAO {
 
     // Método para salvar usuarios
     public void salvar(Usuario usuario) throws SQLException {
-        String insert = "INSERT INTO USUARIOS(nome, fone, login, senha, perfil) VALUES(?,?,?,?,?)";
-          save(insert, usuario.getNome(), usuario.getFone(), usuario.getLogin(), usuario.getSenha(), usuario.getPerfil());
+        String insert = "INSERT INTO USUARIOS(nome, fone, login, senha, perfil, email) VALUES(?,?,?,?,?,?)";
+          save(insert, usuario.getNome(), usuario.getFone(), usuario.getLogin(), usuario.getSenha(), usuario.getPerfil(), usuario.getEmail());
     }
 
     // Método para alterar usuarios
     public void alterar(Usuario usuario) throws SQLException {
-        String update = "UPDATE USUARIOS " + "SET nome = ?, fone = ?, login = ?, senha = ?, perfil = ? "
+        String update = "UPDATE USUARIOS " + "SET nome = ?, fone = ?, login = ?, senha = ?, perfil = ?, email = ?"
                 + "WHERE ID = ?";
 		update(update, usuario.getId(), usuario.getNome(), usuario.getFone(), usuario.getLogin(),
-				usuario.getSenha(), usuario.getPerfil());
+				usuario.getSenha(), usuario.getPerfil(), usuario.getEmail());
     }
 
     // Método para excluir usuarios
@@ -44,6 +44,7 @@ public class UsuarioDAO extends GenericDAO {
             usuario.setLogin(rs.getString("login"));
             usuario.setSenha(rs.getString("senha"));
             usuario.setPerfil(rs.getString("perfil"));
+            usuario.setEmail(rs.getString("email"));
 
             lista.add(usuario);
         }
@@ -69,6 +70,7 @@ public class UsuarioDAO extends GenericDAO {
             usuario.setLogin(rs.getString("login"));
             usuario.setSenha(rs.getString("senha"));
             usuario.setPerfil(rs.getString("perfil"));
+            usuario.setEmail(rs.getString("email"));
         }
 
         rs.close();
