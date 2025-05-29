@@ -74,9 +74,12 @@ public class CadastroUsuariosController {
     @FXML
     void btnIncluirAlterarClick(ActionEvent event) throws SQLException {
         if(usuarioSelecionado == null){
-            if(txtNome.getText().isEmpty() || txtLogin.getText().isEmpty() || txtSenha.getText().isEmpty() || txtTelefone.getText().isEmpty() || txtEmail.getText().isEmpty()){
+            if(txtNome.getText().isEmpty() || txtLogin.getText().isEmpty() || txtSenha.getText().isEmpty() || 
+                    txtTelefone.getText().isEmpty() || txtEmail.getText().isEmpty() ||
+                    txtNome.getText().isBlank() || txtLogin.getText().isBlank() || txtSenha.getText().isBlank() || 
+                    txtTelefone.getText().isBlank() || txtEmail.getText().isBlank()){
              
-                AlertaUtil.mostrarInformacao("Campos não preenchidos",
+                AlertaUtil.mostrarErro("Campos não preenchidos",
                 "Você deve preencher todos os campos!");
                 
             }
@@ -86,9 +89,21 @@ public class CadastroUsuariosController {
             txtSenha.getText(), cbPerfil.getValue(), txtEmail.getText(), dtDataNasc.getValue() );
             }
         } else {
+            if(txtNome.getText().isEmpty() || txtLogin.getText().isEmpty() || txtSenha.getText().isEmpty() || 
+                    txtTelefone.getText().isEmpty() || txtEmail.getText().isEmpty() ||
+                    txtNome.getText().isBlank() || txtLogin.getText().isBlank() || txtSenha.getText().isBlank() || 
+                    txtTelefone.getText().isBlank() || txtEmail.getText().isBlank()){
+             
+                AlertaUtil.mostrarErro("Campos não preenchidos",
+                "Você deve preencher todos os campos!");
+                
+            }
+            else{
+            
             alterar(usuarioSelecionado.getId(), txtNome.getText(),
                     txtTelefone.getText(), txtLogin.getText(),
                     txtSenha.getText(), cbPerfil.getValue(), txtEmail.getText(), dtDataNasc.getValue());
+            }
         }
     }
 
