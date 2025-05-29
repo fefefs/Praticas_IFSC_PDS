@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
+import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -17,11 +18,15 @@ import javafx.stage.Stage;
 import model.Usuario;
 import model.UsuarioDAO;
 import util.AlertaUtil;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 public class CadastroUsuariosController {
     Stage stageCadastroUsuarios;
     Usuario usuarioSelecionado;
     private Runnable onUsuarioSalvo; //Este é o callback
+    
+    private static final Pattern TELEFONE_PATTERN = Pattern.compile("^\\(\\d{2}\\)\\s\\d{4,5}-\\d{4}$");
     
       @FXML
     private Button btnExcluir;
@@ -82,6 +87,10 @@ public class CadastroUsuariosController {
                 AlertaUtil.mostrarErro("Campos não preenchidos",
                 "Você deve preencher todos os campos!");
                 
+            }
+            if(verifTelefone(txtTelefone.toString()) == false){
+                AlertaUtil.mostrarErro("Telefone incompativel",
+                txtTelefone.getText());
             }
             else{
             incluir(txtNome.getText(),
@@ -172,5 +181,17 @@ public class CadastroUsuariosController {
                  "Registro excluído com sucesso!");
          stageCadastroUsuarios.close();
     }
+    
+    public boolean verifTelefone(String telefone) {
+        
+        Matcher matcher = TELEFONE_PATTERN.matcher(telefone);
+        if (matcher.matches()){
+            return true;
+        } else {
+            return false;
+        }
+        
+    
+}
     
 }
