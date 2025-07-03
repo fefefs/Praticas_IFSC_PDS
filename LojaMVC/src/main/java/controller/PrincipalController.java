@@ -2,6 +2,7 @@ package controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import model.ClienteDAO;
 import util.AlertaUtil;
 
 public class PrincipalController {
@@ -33,6 +35,9 @@ public class PrincipalController {
 
     @FXML
     private Menu menuCadastro;
+    
+     @FXML
+    private MenuItem menuCadastroClientes;
 
     @FXML
     private MenuItem menuCadastroUsuarios;
@@ -48,6 +53,31 @@ public class PrincipalController {
 
     @FXML
     private MenuItem menuSobre;
+    
+     @FXML
+    void menuCadastroClientesClick(ActionEvent event) throws MalformedURLException, IOException {
+        URL url = new File("src/main/java/view/ClienteView.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader(url);
+        Parent root = loader.load();
+        
+        Stage StageClienteView = new Stage();
+        
+        ClienteViewController cvc = loader.getController();
+
+        cvc.setStage(StageClienteView);
+
+        StageClienteView.setOnShown(evento -> {
+            cvc.ajustarElementosJanela();
+        });
+
+        Scene scene = new Scene(root);
+        
+        StageClienteView.setTitle("Cadastro Cliente");
+        StageClienteView.setScene(scene);
+        StageClienteView.show();
+    
+
+    }
 
     @FXML
     void menuCadastroUsuariosClick(ActionEvent event) throws IOException {

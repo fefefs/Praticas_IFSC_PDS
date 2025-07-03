@@ -1,5 +1,6 @@
 controller\CadastroUsuariosController.class
 controller\PrincipalController.class
+controller\ClienteViewController.class
 model\Usuario.class
 principal\App.class
 dal\ConexaoBD.class
