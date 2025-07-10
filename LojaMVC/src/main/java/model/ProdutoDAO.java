@@ -12,7 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class ProdutoDAO extends GenericDAO{
-    public void inserirCliente( Produto produto ) {
+    public void inserirProduto( Produto produto ) {
         String sql = "INSERT INTO produto (descricao, valor, quantidade_estoque) VALUES ( ?, ?, ?)";
         
         try (Connection conn = ConexaoBD.conectar();
@@ -84,5 +84,12 @@ public class ProdutoDAO extends GenericDAO{
         conectarDAO().close();
 
         return lista;
+    }
+   
+   public void alterar(Produto produto) throws SQLException {
+        String update = "UPDATE produto " + "SET descicao = ?, valor = ?, estoque = ? "
+                + "WHERE ID = ?";
+		update(update, produto.getId(), produto.getDescricao(), produto.getValor(),
+				 produto.getEstoque() );
     }
 }

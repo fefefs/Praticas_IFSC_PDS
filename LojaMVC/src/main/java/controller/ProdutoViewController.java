@@ -101,7 +101,7 @@ public class ProdutoViewController {
         produto.setDescricao(txtDescricao.getText());
         produto.setValor(Double.parseDouble(txtValor.getText()));
         produto.setEstoque(Integer.parseInt(txtEstoque.getText()));
-        dao.inserirCliente(produto);
+        dao.inserirProduto(produto);
        
         ajustarElementosJanela();
 

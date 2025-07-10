@@ -1,5 +1,6 @@
 controller\ClienteViewController.class
 model\Usuario.class
+controller\AtualizarProdutoController.class
 model\GenericDAO.class
 controller\LoginController.class
 model\LoginDAO.class
