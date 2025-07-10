@@ -38,6 +38,9 @@ public class PrincipalController {
     
      @FXML
     private MenuItem menuCadastroClientes;
+     
+     @FXML
+    private MenuItem menuCadastroProduto;
 
     @FXML
     private MenuItem menuCadastroUsuarios;
@@ -67,7 +70,11 @@ public class PrincipalController {
         cvc.setStage(StageClienteView);
 
         StageClienteView.setOnShown(evento -> {
-            cvc.ajustarElementosJanela();
+            try {
+                cvc.ajustarElementosJanela();
+            } catch (SQLException ex) {
+                Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
 
         Scene scene = new Scene(root);
@@ -77,6 +84,34 @@ public class PrincipalController {
         StageClienteView.show();
     
 
+    }
+    
+     @FXML
+    void menuCadastroProdutosClick(ActionEvent event) throws MalformedURLException, IOException {
+        URL url = new File("src/main/java/view/ProdutoView.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader(url);
+        Parent root = loader.load();
+        
+        Stage StageProdutoView = new Stage();
+        
+        ProdutoViewController pvc = loader.getController();
+
+        pvc.setStage(StageProdutoView);
+
+        StageProdutoView.setOnShown(evento -> {
+            try {
+                pvc.ajustarElementosJanela();
+            } catch (SQLException ex) {
+                Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+
+        Scene scene = new Scene(root);
+        
+        StageProdutoView.setTitle("Cadastro produto");
+        StageProdutoView.setScene(scene);
+        StageProdutoView.show();
+    
     }
 
     @FXML

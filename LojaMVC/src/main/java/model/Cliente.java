@@ -13,8 +13,6 @@ public class Cliente extends GenericDAO {
     private String nome;
     private String telefone;
     private String endereco;
-    private String login;
-    private String senha;
     private Date dataNascimento;
 
     public int getId() {
@@ -57,22 +55,6 @@ public class Cliente extends GenericDAO {
         this.dataNascimento = dataNascimento;
     }
     
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-    
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-    
     private transient IntegerProperty idProperty;
 
     public IntegerProperty idProperty() {
@@ -109,24 +91,6 @@ public class Cliente extends GenericDAO {
         return enderecoProperty;
     }
     
-    private transient StringProperty loginProperty;
-
-    public StringProperty loginProperty() {
-        if (loginProperty == null) {
-            loginProperty = new SimpleStringProperty(login);
-        }
-        return loginProperty;
-    }
-
-    private transient StringProperty senhaProperty;
-
-    public StringProperty senhaProperty() {
-        if (senhaProperty == null) {
-            senhaProperty = new SimpleStringProperty(senha);
-        }
-        return senhaProperty;
-    }
-    
     private transient StringProperty dataNascProperty;
     
      public StringProperty dataNascProperty() {
@@ -135,4 +99,46 @@ public class Cliente extends GenericDAO {
         }
         return dataNascProperty;
     }
+
+    public Cliente(int id, String nome, String telefone, String endereco, Date dataNascimento) {
+        this.id = id;
+        this.nome = nome;
+        this.telefone = telefone;
+        this.endereco = endereco;
+        this.dataNascimento = dataNascimento;
+    }
+
+    public Cliente(int id, String nome) {
+        this.id = id;
+        this.nome = nome;
+    }
+
+    public Cliente(String nome, String telefone, String endereco, Date dataNascimento) {
+        this.nome = nome;
+        this.telefone = telefone;
+        this.endereco = endereco;
+        this.dataNascimento = dataNascimento;
+    }
+
+    public Cliente(String nome, String telefone, String endereco) {
+        this.nome = nome;
+        this.telefone = telefone;
+        this.endereco = endereco;
+    }
+
+    public Cliente(int id, String nome, String telefone, String endereco) {
+        this.id = id;
+        this.nome = nome;
+        this.telefone = telefone;
+        this.endereco = endereco;
+    }
+
+    public Cliente() {
+    }
+
+    public Cliente(int id) {
+        this.id = id;
+    }
+     
+     
 }

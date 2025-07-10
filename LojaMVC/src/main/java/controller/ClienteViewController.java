@@ -107,7 +107,7 @@ public class ClienteViewController implements Initializable {
     
     @FXML
     void onClickSalvar(ActionEvent event) throws SQLException {
-        cliente = new Cliente();
+        Cliente cliente = new Cliente();
         
         cliente.setNome(txtNome.getText());
         cliente.setTelefone(txtTelefone.getText());

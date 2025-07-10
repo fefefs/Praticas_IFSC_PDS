@@ -61,7 +61,7 @@ public class ClienteDAO extends GenericDAO{
         return lista;
     }
     
-   public void excluir(long id) throws SQLException {
+   public void excluir(int id) throws SQLException {
         String delete = "DELETE FROM USUARIOS WHERE ID = ?";
         delete(delete, id);
     }
@@ -77,9 +77,7 @@ public class ClienteDAO extends GenericDAO{
             Cliente cliente = new Cliente();
             cliente.setId(rs.getInt("id"));
             cliente.setNome(rs.getString("nome"));
-            cliente.setTelefone(rs.getString("fone"));
-            cliente.setLogin(rs.getString("login"));
-            cliente.setSenha(rs.getString("senha"));
+            cliente.setTelefone(rs.getString("telefone"));
             cliente.setDataNascimento(rs.getDate("data_nascimento"));
             lista.add(cliente);
         }

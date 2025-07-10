@@ -92,31 +92,22 @@ public class ListagemUsuariosController {
         if (!lista.isEmpty()) {
             tabelaUsuarios.getColumns().clear();
 
-            TableColumn<Usuario, Number> colunaID
-                    = new TableColumn<>("ID");
+            TableColumn<Usuario, Number> colunaID = new TableColumn<>("ID");
             colunaID.setCellValueFactory(u -> u.getValue().idProperty());
             colunaID.setPrefWidth(40);
 
-            TableColumn<Usuario, String> colunaNome
-                    = new TableColumn<>("Nome");
-            colunaNome.setCellValueFactory(u
-                    -> u.getValue().nomeProperty());
+            TableColumn<Usuario, String> colunaNome = new TableColumn<>("Nome");
+            colunaNome.setCellValueFactory(u -> u.getValue().nomeProperty());
             colunaNome.setStyle("-fx-alignment: CENTER;");
 
-            TableColumn<Usuario, String> colunaFone
-                    = new TableColumn<>("Telefone");
-            colunaFone.setCellValueFactory(u
-                    -> u.getValue().foneProperty());
+            TableColumn<Usuario, String> colunaFone = new TableColumn<>("Telefone");
+            colunaFone.setCellValueFactory(u-> u.getValue().foneProperty());
 
-            TableColumn<Usuario, String> colunaLogin
-                    = new TableColumn<>("Login");
-            colunaLogin.setCellValueFactory(u
-                    -> u.getValue().loginProperty());
+            TableColumn<Usuario, String> colunaLogin = new TableColumn<>("Login");
+            colunaLogin.setCellValueFactory(u -> u.getValue().loginProperty());
 
-            TableColumn<Usuario, String> colunaPerfil
-                    = new TableColumn<>("Perfil");
-            colunaPerfil.setCellValueFactory(u
-                    -> u.getValue().perfilProperty());
+            TableColumn<Usuario, String> colunaPerfil = new TableColumn<>("Perfil");
+            colunaPerfil.setCellValueFactory(u -> u.getValue().perfilProperty());
             
             TableColumn<Usuario, String> colunaEmail = new TableColumn<>("Email");
             colunaEmail.setCellValueFactory(u -> u.getValue().emailProperty());
