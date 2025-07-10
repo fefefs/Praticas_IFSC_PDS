@@ -7,12 +7,14 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 
 public class ClienteDAO extends GenericDAO{
     
     public void inserirCliente( Cliente cliente ) {
-        String sql = "INSERT INTO Cliente (nome, telefone, endereco, data_nascimento) VALUEA ( ?, ?, ?, ?)";
+        String sql = "INSERT INTO Cliente (nome, telefone, endereco, data_nascimento) VALUES ( ?, ?, ?, ?)";
         
         try (Connection conn = ConexaoBD.conectar();
         PreparedStatement stmt = conn.prepareStatement(sql)){
@@ -32,7 +34,8 @@ public class ClienteDAO extends GenericDAO{
                 }
     }
     
-    public void listarClientes() throws SQLException{
+    public ObservableList<Cliente> listarClientes(Cliente cliente) throws SQLException{
+        ObservableList<Cliente> lista = FXCollections.observableArrayList();
         String sql = "SELECT * FROM Cliente";
         
         try (Connection conn = ConexaoBD.conectar();
@@ -46,12 +49,46 @@ public class ClienteDAO extends GenericDAO{
                 String endereco = rs.getString("endereco");
                 Date nascimento = rs.getDate("data_nascimento");
                 
-                    System.out.println("ID:" + id + "| Nome: " + nome + "| tel: " + telefone + " | Endereço: " + endereco + " | Nascimento" + nascimento);
+                
+
+                lista.add(cliente);
+                //System.out.println("ID:" + id + "| Nome: " + nome + "| tel: " + telefone + " | Endereço: " + endereco + " | Nascimento" + nascimento);
                     
             }
         } catch (SQLException e) {
                 System.out.println("Erro ao listar clientes: "+ e.getMessage());
                 }
+        return lista;
+    }
+    
+   public void excluir(long id) throws SQLException {
+        String delete = "DELETE FROM USUARIOS WHERE ID = ?";
+        delete(delete, id);
+    }
+   
+   public ObservableList<Cliente> selecionarClientes() throws SQLException {
+        ObservableList<Cliente> lista = FXCollections.observableArrayList();
+        String sql = "SELECT * FROM Clientes";
+        PreparedStatement pstm = conectarDAO().prepareStatement(sql);
+
+        ResultSet rs = pstm.executeQuery();
+
+        while (rs.next()) {
+            Cliente cliente = new Cliente();
+            cliente.setId(rs.getInt("id"));
+            cliente.setNome(rs.getString("nome"));
+            cliente.setTelefone(rs.getString("fone"));
+            cliente.setLogin(rs.getString("login"));
+            cliente.setSenha(rs.getString("senha"));
+            cliente.setDataNascimento(rs.getDate("data_nascimento"));
+            lista.add(cliente);
+        }
+
+        rs.close();
+        pstm.close();
+        conectarDAO().close();
+
+        return lista;
     }
     
 }
