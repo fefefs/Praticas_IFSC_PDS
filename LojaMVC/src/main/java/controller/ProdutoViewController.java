@@ -58,7 +58,7 @@ public class ProdutoViewController {
     
     private ObservableList<Produto> listarProds() throws SQLException {
         ProdutoDAO dao = new ProdutoDAO();
-        return dao.listarClientes(produto);
+        return dao.selecionarProduto();
         
     }
     

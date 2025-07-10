@@ -81,7 +81,7 @@
       </GridPane>
       <ScrollPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
          <content>
-            <TableView fx:id="TableView" prefHeight="151.0" prefWidth="584.0" />
+            <TableView fx:id="TableView" onMouseClicked="#TableClick" prefHeight="151.0" prefWidth="584.0" />
          </content>
       </ScrollPane>
       <Button fx:id="btnSalvar" mnemonicParsing="false" onAction="#onClickSalvar" text="Salvar" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">

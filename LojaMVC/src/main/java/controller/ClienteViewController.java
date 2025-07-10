@@ -1,6 +1,8 @@
 
 package controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -12,12 +14,16 @@ import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.Cliente;
 import model.ClienteDAO;
@@ -74,7 +80,7 @@ public class ClienteViewController implements Initializable {
     
     private ObservableList<Cliente> listarCnts() throws SQLException {
         ClienteDAO dao = new ClienteDAO();
-        return dao.listarClientes(cliente);
+        return dao.selecionarClientes();
         
     }
     
@@ -121,6 +127,42 @@ public class ClienteViewController implements Initializable {
 
     void ajustarElementosJanela() throws SQLException {
         carregarTabelaADMS();
+    }
+    
+    @FXML
+    void TableClick(MouseEvent event) throws IOException {
+        if (event.getClickCount() == 1) {
+            this.cliente = TableView.getSelectionModel().getSelectedItem();
+            if (this.cliente != null) {
+                URL url = new File("src/main/java/view/AtualizarCliente.fxml").toURI().toURL();
+                FXMLLoader loader = new FXMLLoader(url);
+                Parent root = loader.load();
+
+                Stage stageAtualizarCliente = new Stage();
+
+                AtualizarClienteController ac = loader.getController();
+
+                ac.setStage(stageAtualizarCliente);
+
+                stageAtualizarCliente.setOnShown(evento -> {
+                    ac.ajustarElementosJanela(this.cliente);
+                });
+                
+                ac.setOnUsuarioSalvo(() -> {
+                    try{
+                        ajustarElementosJanela();
+                    } catch (SQLException ex){
+                        
+                    }
+                });
+
+                Scene scene = new Scene(root);
+
+                stageAtualizarCliente.setTitle("Atualizar cliente");
+                stageAtualizarCliente.setScene(scene);
+                stageAtualizarCliente.show();
+            }
+        }
     }
 
     

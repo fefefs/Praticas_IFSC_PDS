@@ -36,7 +36,7 @@ public class ClienteDAO extends GenericDAO{
     
     public ObservableList<Cliente> listarClientes(Cliente cliente) throws SQLException{
         ObservableList<Cliente> lista = FXCollections.observableArrayList();
-        String sql = "SELECT * FROM Cliente";
+        String sql = "SELECT * FROM cliente";
         
         try (Connection conn = ConexaoBD.conectar();
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -62,13 +62,13 @@ public class ClienteDAO extends GenericDAO{
     }
     
    public void excluir(int id) throws SQLException {
-        String delete = "DELETE FROM USUARIOS WHERE ID = ?";
+        String delete = "DELETE FROM cliente WHERE ID = ?";
         delete(delete, id);
     }
    
    public ObservableList<Cliente> selecionarClientes() throws SQLException {
         ObservableList<Cliente> lista = FXCollections.observableArrayList();
-        String sql = "SELECT * FROM Clientes";
+        String sql = "SELECT * FROM cliente";
         PreparedStatement pstm = conectarDAO().prepareStatement(sql);
 
         ResultSet rs = pstm.executeQuery();
@@ -89,6 +89,12 @@ public class ClienteDAO extends GenericDAO{
         return lista;
     }
     
+   public void alterar(Cliente cliente) throws SQLException {
+        String update = "UPDATE cliente " + "SET nome = ?, fone = ?, endereco = ?, dataNasc = ?"
+                + "WHERE ID = ?";
+		update(update, cliente.getId(), cliente.getNome(), cliente.getTelefone(),
+				 cliente.getEndereco(), cliente.getDataNascimento());
+    }
 }
 
 

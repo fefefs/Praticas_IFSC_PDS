@@ -10,6 +10,7 @@ controller\ListagemUsuariosController.class
 model\UsuarioDAO.class
 model\ClienteDAO.class
 controller\CadastroUsuariosController.class
+controller\AtualizarClienteController.class
 controller\PrincipalController.class
 principal\App.class
 controller\ProdutoViewController.class

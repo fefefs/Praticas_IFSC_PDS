@@ -13,7 +13,7 @@ import javafx.collections.ObservableList;
 
 public class ProdutoDAO extends GenericDAO{
     public void inserirCliente( Produto produto ) {
-        String sql = "INSERT INTO Produto (descricao, valor, quantidade_estoque) VALUES ( ?, ?, ?)";
+        String sql = "INSERT INTO produto (descricao, valor, quantidade_estoque) VALUES ( ?, ?, ?)";
         
         try (Connection conn = ConexaoBD.conectar();
         PreparedStatement stmt = conn.prepareStatement(sql)){
@@ -34,7 +34,7 @@ public class ProdutoDAO extends GenericDAO{
     
     public ObservableList<Produto> listarClientes(Produto produto) throws SQLException{
         ObservableList<Produto> lista = FXCollections.observableArrayList();
-        String sql = "SELECT * FROM Produto";
+        String sql = "SELECT * FROM produto";
         
         try (Connection conn = ConexaoBD.conectar();
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -59,13 +59,13 @@ public class ProdutoDAO extends GenericDAO{
     }
     
    public void excluir(int id) throws SQLException {
-        String delete = "DELETE FROM Produto WHERE ID = ?";
+        String delete = "DELETE FROM produto WHERE ID = ?";
         delete(delete, id);
     }
    
    public ObservableList<Produto> selecionarProduto() throws SQLException {
         ObservableList<Produto> lista = FXCollections.observableArrayList();
-        String sql = "SELECT * FROM Produto";
+        String sql = "SELECT * FROM produto";
         PreparedStatement pstm = conectarDAO().prepareStatement(sql);
 
         ResultSet rs = pstm.executeQuery();
